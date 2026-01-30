@@ -1,0 +1,56 @@
+# EchoNet VideoMAE Training Configuration
+# Default hyperparameters for EF prediction
+
+# Data
+data:
+  data_dir: null  # Auto-detected if null
+  train_split: "TRAIN"
+  val_split: "VAL"
+  test_split: "TEST"
+
+# Model
+model:
+  pretrained: "MCG-NJU/videomae-base"
+  freeze_backbone: false
+  num_frames: 16
+
+# Training
+training:
+  epochs: 10
+  batch_size: 12  # Increased to utilize more GPU memory
+  gradient_accumulation_steps: 8  # Effective batch = 8 * 8 = 64
+  learning_rate: 1.0e-5  # Backbone LR (head gets 100x)
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  warmup_ratio: 0.1
+
+# Mixed Precision
+amp:
+  enabled: true
+  dtype: "float16"  # or "bfloat16"
+
+# Early Stopping
+early_stopping:
+  enabled: true
+  patience: 5  # Stop after 5 evals without improvement
+  min_delta: 0.01  # Minimum improvement to count
+
+# Checkpointing
+checkpoints:
+  output_dir: "./checkpoints"
+  save_steps: 500
+  eval_steps: 500  # Evaluate every 500 steps (uses 50 batches for quick eval)
+  keep_top_k: 3  # Keep best K checkpoints
+
+# Logging
+logging:
+  project: "EchoNet-VideoMAE"
+  log_steps: 10
+
+# Clinical Loss Weighting
+loss:
+  use_clinical_weights: true
+  severe_hf_weight: 3.0     # EF < 30%
+  moderate_hf_weight: 2.0   # EF 30-40%
+  hyperdynamic_weight: 2.5  # EF > 70%
+  normal_weight: 1.0        # EF 40-70%

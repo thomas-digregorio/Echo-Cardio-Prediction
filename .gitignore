@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Environment
+.env
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Dataset (large files)
+EchoNet-Dynamic/
+
+# Checkpoints (keep best_model.pt only)
+checkpoints/model_step_*.pt
+checkpoints/model_epoch_*.pt
+checkpoints/last_model.pt
+# Note: best_model.pt is NOT ignored - it will be committed
+
+# Logs
+wandb/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Notebook outputs
+notebooks/*.png
