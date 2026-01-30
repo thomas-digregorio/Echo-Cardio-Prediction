@@ -153,7 +153,7 @@ All training runs are automatically logged to [Weights & Biases](https://wandb.a
 - **Hyperparameters**: Logged from config file
 - **Checkpoints**: Best model saved locally
 
-View your runs at: `https://wandb.ai/<your-username>/echonet-ef`
+View your runs at: `https://wandb.ai/tad537113-university-of-texas/EchoNet-VideoMAE/runs/1q25s1fd`
 
 ### Demo Application
 
@@ -313,3 +313,4 @@ This project is for educational and research purposes. The EchoNet-Dynamic datas
 - Stanford Medicine for the EchoNet-Dynamic dataset
 - Hugging Face for the Transformers library
 - NVIDIA for DALI
+
